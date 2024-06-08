@@ -1,5 +1,5 @@
 /**
- * Dario BS5 Multiselect
+ * BS Multiselect
  * v1.0.0 2024/06/4
  * Author: Dario Vinci
  * https: //github.com/dariovinci/dario-bs5-multiselect
@@ -8,7 +8,7 @@
  */
 
 /**/
-const DarioMultiselect = (function () {
+const BsMultiselect = (function () {
     'use strict';
 
     /**/
@@ -346,4 +346,4 @@ const DarioMultiselect = (function () {
     return Constructor;
 })();
 
-module.exports = DarioMultiselect;
+module.exports = BsMultiselect;
