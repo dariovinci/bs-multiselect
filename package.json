@@ -1,0 +1,24 @@
+{
+    "name": "@dariovinci/bs-multiselect",
+    "version": "1.0.0",
+    "description": "A simple and light multiselect for bootstrap written in JS",
+    "main": "src/npm publish --access publicindex.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dariovinci/bs-multiselect.git"
+    },
+    "keywords": [
+        "bootstrap",
+        "select",
+        "multiselect"
+    ],
+    "author": "Dario Vinci",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/dariovinci/bs-multiselect/issues"
+    },
+    "homepage": "https://github.com/dariovinci/bs-multiselect#readme"
+}
