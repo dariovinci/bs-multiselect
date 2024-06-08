@@ -1,1 +1,1 @@
-# dario-bs5-multiselect
+# dario-bs-multiselect
