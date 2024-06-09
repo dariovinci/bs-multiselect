@@ -91,25 +91,35 @@ const multiselect_test = new BsMultiselect({
     <tr>
       <td>ajaxCreateDataArray</td>
       <td>function</td>
-      <td>You can manipulate the data fetched by the ajax call and return them. Example:
-      ```js
-        ajaxCreateDataArray: (resp) => {
-            let dataArray = [];
-            for (let i = 0; i < resp.length; i++) {
-                const element = resp[i];
-                dataArray.push({
-                    value: element.id,
-                    text: element.name
-                })
-
-            }
-            return dataArray;
-        }
-    ```
-    </td>
+      <td>You can manipulate the data fetched by the ajax call and return them. Check the below example</td>
     </tr>
   </tbody>
 </table>
+
+<h3>ajaxCreateDataArray Example:</h3>
+
+```js
+const multiselect_test = new BsMultiselect({
+  inputId: '#multiselect-test',
+  dataArray: [],
+  selectAll: true,
+  showCompactSelection: true,
+  maxHeight: 200px,
+  showSearchBox: true,
+  ajaxCreateDataArray: (resp) => {
+    let dataArray = [];
+    for (let i = 0; i < resp.length; i++) {
+	const element = resp[i];
+	dataArray.push({
+	    value: element.id,
+	    text: element.name
+	})
+
+    }
+    return dataArray;
+}
+});
+```
 
 <h3>METHODS</h3>
 
