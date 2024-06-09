@@ -331,7 +331,7 @@ const BsMultiselect = (function () {
             let valuesArray = [];
             for (let i = 0; i < selectedItems.length; i++) {
                 const v = selectedItems[i];
-                valuesArray.push(v);
+                valuesArray.push(v.value);
             }
             return valuesArray;
         }
