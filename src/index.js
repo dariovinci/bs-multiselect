@@ -1,6 +1,6 @@
 /**
  * BS Multiselect
- * v1.0.2 2024/06/9
+ * v1.0.4 2024/06/9
  * Author: Dario Vinci
  * https: //github.com/dariovinci/dario-bs5-multiselect
  * 
