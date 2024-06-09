@@ -88,6 +88,26 @@ const multiselect_test = new BsMultiselect({
       <td>url</td>
       <td>Url that will be used to fetch your options. Use only if dataArray is not defined and make sure that the response has the correct structure (like dataArray)</td>
     </tr>
+    <tr>
+      <td>ajaxCreateDataArray</td>
+      <td>function</td>
+      <td>You can manipulate the data fetched by the ajax call and return them. Example:
+      ```js
+        ajaxCreateDataArray: (resp) => {
+            let dataArray = [];
+            for (let i = 0; i < resp.length; i++) {
+                const element = resp[i];
+                dataArray.push({
+                    value: element.id,
+                    text: element.name
+                })
+
+            }
+            return dataArray;
+        }
+    ```
+    </td>
+    </tr>
   </tbody>
 </table>
 

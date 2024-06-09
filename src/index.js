@@ -21,8 +21,10 @@ const BsMultiselect = (function () {
             selectAll: '',
             showCompactSelection: '',
             maxHeight: '',
+            adjustBadgePosition: '',
             showSearchBox: '',
             ajaxSourceUrl: '',
+            ajaxCreateDataArray: null,
             ajaxErrorCallback: (e) => {
                 console.log(e);
             }
@@ -62,16 +64,25 @@ const BsMultiselect = (function () {
             optionsArray = settings.dataArray;
             initMultiselect();
         } else {
-            // if (term.length >= settings.minLength && !xhrLock) {
-            // 	xhrLock = true;
 
             ajaxFetch().then((res) => {
-                optionsArray = res;
-                initMultiselect();
-                //xhrLock = false;
+
+                if ((settings.ajaxCreateDataArray !== null && typeof settings.ajaxCreateDataArray !== 'function')) {
+                    throw new Error('Invalid args');
+                } else {
+                    if ((typeof settings.ajaxCreateDataArray !== null)) {
+                        //manipolazione res
+                        optionsArray = settings.ajaxCreateDataArray(res);
+                        initMultiselect();
+                    } else {
+                        optionsArray = res;
+                        initMultiselect();
+                    }
+                }
+
+
             }).catch(e => {
                 settings.ajaxErrorCallback(e);
-                //xhrLock = false;
             });
         }
 
@@ -135,9 +146,6 @@ const BsMultiselect = (function () {
                         else checkbox.parentNode.parentNode.classList.add('d-none');
                     });
 
-
-
-                    console.log(filteredOptionsArray);
                 }, false)
             }
 
@@ -147,7 +155,11 @@ const BsMultiselect = (function () {
             selectedListItemsTextDisplay.setAttribute('data-bs-toggle', 'dropdown');
             selectedListItemsTextDisplay.classList.add('w-100', 'd-flex', 'flex-no-wrap', 'overflow-x-scroll');
             selectedListItemsTextDisplay.style.position = 'absolute';
-            selectedListItemsTextDisplay.style.top = '1.15rem';
+            if (settings.adjustBadgePosition != undefined) {
+                selectedListItemsTextDisplay.style.top = 'calc(1.8rem  ' + settings.adjustBadgePosition + ')';
+            } else {
+                selectedListItemsTextDisplay.style.top = '1.8rem';
+            }
             selectedListItemsTextDisplay.style.zIndex = "3";
             selectedListItemsTextDisplay.style.padding = '0rem 0.7rem';
             input.insertAdjacentElement('afterend', selectedListItemsTextDisplay);
@@ -160,7 +172,6 @@ const BsMultiselect = (function () {
                 chBoxes[i].addEventListener('change', function (e) {
 
                     updateOnChange();
-                    console.log(selectedItems);
 
                 }, false)
             };
@@ -238,7 +249,6 @@ const BsMultiselect = (function () {
 
         //Creazione della singola opzione
         function createOptionElement(data, index, selectAll) {
-            console.log(data);
             let checkbox = document.createElement(`div`);
             let checked = selectAll == true ? 'checked' : '';
             checkbox.classList.add('dropdown-item');
@@ -281,7 +291,6 @@ const BsMultiselect = (function () {
             for (let i = 0; i < chBoxes.length; i++) {
                 chBoxes[i].addEventListener('change', function (e) {
                     updateOnChange();
-                    console.log(selectedItems);
                 }, false)
             };
         }
