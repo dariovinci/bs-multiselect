@@ -1,6 +1,6 @@
 /**
  * BS Multiselect
- * v1.0.4 2024/06/9
+ * v1.0.5 2024/06/9
  * Author: Dario Vinci
  * https: //github.com/dariovinci/dario-bs5-multiselect
  * 
@@ -34,8 +34,8 @@ const BsMultiselect = (function () {
         const settings = Object.assign({}, defaults, options);
 
 
-        let xhrLock = false;
         let selectedItems = [];
+        let initComplete = false;
         const publicAPIs = {};
 
         //Campo Input principale --> va messo a readonly e data-bs-toggle="dropdown"
@@ -164,7 +164,7 @@ const BsMultiselect = (function () {
             selectedListItemsTextDisplay.style.padding = '0rem 0.7rem';
             input.insertAdjacentElement('afterend', selectedListItemsTextDisplay);
             printSelectedListItems();
-            //END INIT
+
 
 
             //Listener Selezione di una opzione
@@ -175,6 +175,9 @@ const BsMultiselect = (function () {
 
                 }, false)
             };
+
+            initComplete = true;
+            //END INIT
         }
 
 
@@ -323,6 +326,10 @@ const BsMultiselect = (function () {
         //Public Interface
 
         /**/
+        publicAPIs.initComplete = function () {
+            return initComplete;
+        }
+
         publicAPIs.getselectedItems = function () {
             return selectedItems;
         }

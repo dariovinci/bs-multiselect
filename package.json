@@ -1,6 +1,6 @@
 {
     "name": "@dariovinci/bs-multiselect",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "A simple and light multiselect for bootstrap written in JS",
     "main": "src/index.js",
     "scripts": {
