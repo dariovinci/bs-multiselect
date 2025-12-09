@@ -6,7 +6,7 @@ on:
       - 'v*'
 
 permissions:
-  id-token: write  # Required for OIDC
+  id-token: write # Necessario per OIDC
   contents: read
 
 jobs:
@@ -15,15 +15,28 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js and configure npm
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
+          # Imposta il registro e, cosa cruciale, abilita l'OIDC
           registry-url: 'https://registry.npmjs.org'
+          # **IMPORTANTE PER OIDC:** Usa il token OIDC generato da GitHub
+          # L'azione setup-node lo configurerà automaticamente in .npmrc
+          scope: '@dariovinci' # Sostituisci con il tuo scope se il pacchetto è scoped
 
-      # Ensure npm 11.5.1 or later is installed
+      # Il comando 'Update npm' non è sempre necessario con setup-node@v4, ma lo manteniamo
       - name: Update npm
         run: npm install -g npm@latest
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: npm test
-      - run: npm publish
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build --if-present
+
+      - name: Test
+        run: npm test
+
+      - name: Publish to npm
+        run: npm publish --access public # Aggiungi --access public se non è un pacchetto privato
