@@ -154,6 +154,8 @@ const BsMultiselect = (function () {
             selectedListItemsTextDisplay = document.createElement(`div`);
             selectedListItemsTextDisplay.setAttribute('data-bs-toggle', 'dropdown');
             selectedListItemsTextDisplay.classList.add('w-100', 'd-flex', 'flex-no-wrap', 'overflow-x-scroll');
+            selectedListItemsTextDisplay.style.scrollbarWidth = 'none';      // Per Firefox
+            selectedListItemsTextDisplay.style.msOverflowStyle = 'none';      // Per IE/Edge
             selectedListItemsTextDisplay.style.position = 'absolute';
             if (settings.adjustBadgePosition != undefined) {
                 selectedListItemsTextDisplay.style.top = 'calc(1.8rem  ' + settings.adjustBadgePosition + ')';
